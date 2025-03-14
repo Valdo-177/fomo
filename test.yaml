@@ -1,0 +1,21 @@
+appId: com.fomo
+---
+- launchApp
+
+- assertVisible: "Encuentra eventos en tendencia"
+
+# - tapOn: "Buscar"
+
+# - inputText: "CaribeConf 2025"
+
+# - assertVisible: "CaribeConf 2025" # Asegura que al menos un resultado coincide con la búsqueda
+
+# - tapOn: "Buscar"
+
+# - inputText: "CaribeConf 2025"
+
+# - assertVisible: "CaribeConf 2025" # Asegura que al menos un resultado coincide con la búsqueda
+
+- scrollUntilVisible:
+    element: "Evento pago prueba"
+    direction: DOWN

@@ -1,97 +1,119 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# FOMO
 
-# Getting Started
+FOMO es una plataforma innovadora que permite a los organizadores de eventos gestionar y promocionar sus actividades de manera eficiente. La aplicación está construida con **React Native**, permitiendo su despliegue tanto en **Android** como en **iOS**.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Características
+- Listado y búsqueda de eventos en tiempo real.
+- Interfaz intuitiva y optimizada para móviles.
+- Integración con **Axios** para el consumo de APIs.
+- Uso de **React Navigation** para la gestión de rutas.
+- Soporte para **vector icons** y estilos personalizados.
+- Implementación de **Fastlane** para la automatización de builds.
 
-## Step 1: Start Metro
+## 📦 Dependencias principales
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+```json
+{
+  "@react-navigation/native": "^7.0.15",
+  "@react-navigation/native-stack": "^7.2.1",
+  "axios": "^1.8.3",
+  "react": "19.0.0",
+  "react-native": "0.78.0",
+  "react-native-safe-area-context": "^5.3.0",
+  "react-native-screens": "^4.9.2",
+  "react-native-vector-icons": "^10.2.0"
+}
+```
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## 📖 Instalación y configuración
+
+### 1️⃣ Requisitos previos
+Antes de iniciar, asegúrate de tener instalados:
+- [Node.js](https://nodejs.org/) (versión 18 o superior)
+- [React Native CLI](https://reactnative.dev/docs/environment-setup)
+- [CocoaPods](https://cocoapods.org/) (para iOS)
+- Android Studio (para emulador Android)
+
+### 2️⃣ Instalación del proyecto
+Clona este repositorio y ejecuta:
 
 ```sh
-# Using npm
+git clone https://github.com/Valdo-177/fomo
+cd fomo
+npm install
+```
+
+### 3️⃣ Iniciar el servidor Metro
+Metro es el bundler de React Native. Para iniciarlo, ejecuta:
+
+```sh
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+### 4️⃣ Ejecutar la aplicación
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
+#### 📱 Android
 ```sh
-# Using npm
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+#### 🍏 iOS (MacOS requerido)
 
 ```sh
+cd ios
 bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
 bundle exec pod install
+cd ..
+npm run ios
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## 🏗 Configuración de Fastlane
+Para automatizar la generación de builds, se utiliza **Fastlane**. Asegúrate de tenerlo instalado:
 
 ```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+gem install fastlane -NV
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### 📌 Configuración para iOS
+1. Accede a la carpeta `ios` y corre:
+   ```sh
+   fastlane init
+   ```
+2. Configura `fastlane/Fastfile` con tus credenciales de App Store Connect.
+3. Genera una build para distribución con:
+   ```sh
+   fastlane ios release
+   ```
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+### 📌 Configuración para Android
+1. Accede a la carpeta `android` y corre:
+   ```sh
+   fastlane init
+   ```
+2. Modifica `fastlane/Fastfile` para la configuración de Play Store.
+3. Genera una build con:
+   ```sh
+   fastlane android release
+   ```
 
-## Step 3: Modify your app
+## 📚 Historia de FOMO
 
-Now that you have successfully run the app, let's make changes!
+FOMO nació con la visión de revolucionar la forma en que los organizadores de eventos gestionan y promocionan sus actividades. Su fundador, **Alexandro Rendón**, inició el proyecto participando en una competencia, lo que le permitió desarrollar un **MVP en WordPress** gracias a un capital semilla.
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+En 2024, **Jesús Barros** se unió al proyecto. En ese momento, Jesús ya contaba con un equipo de desarrollo y buscaba construir una plataforma similar a FOMO. Tras varias conversaciones, ambos decidieron consolidar una sociedad y convertirse en cofundadores, dando inicio al desarrollo de **FOMO 2.0**.
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+A finales de 2024, se hizo evidente la necesidad de mejorar la eficiencia de los servidores en la nube. Fue entonces cuando Jesús contactó a **Felipe Gonzales**, un experto en **AWS**, quien se convirtió en el tercer cofundador de FOMO.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+A mediados de marzo de 2025, **FOMO 2.0 finalmente salió al mercado**. Hoy, la historia continúa con la misión de seguir evolucionando y transformando la industria de los eventos.
 
-## Congratulations! :tada:
+## 🎯 Misión
+Empoderar a los organizadores de eventos con una plataforma tecnológica eficiente, escalable e intuitiva, que simplifique la gestión, promoción y venta de entradas.
 
-You've successfully run and modified your React Native App. :partying_face:
+## 👀 Visión
+Convertirnos en la **plataforma líder en la organización y gestión de eventos en Latinoamérica**, brindando herramientas innovadoras que faciliten el éxito de nuestros clientes.
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## ⭐ Valores
+- **Innovación**: Nos mantenemos a la vanguardia con tecnología de última generación.
+- **Compromiso**: Brindamos la mejor experiencia a organizadores y asistentes.
+- **Escalabilidad**: Creamos soluciones robustas y adaptables.
+- **Transparencia**: Construimos relaciones de confianza con nuestros usuarios.

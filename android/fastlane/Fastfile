@@ -1,0 +1,71 @@
+# Fastlane Configuration for Fomo
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Beta Build"
+  lane :beta do
+    build_gradle_file_path = "./app/build.gradle"
+    update_version_code(build_gradle_file_path)
+    gradle(task: "clean assembleRelease")
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: "clean assembleRelease")
+    upload_to_play_store
+  end
+
+  desc "Send Beta to Firebase beta testers for Fomo"
+  lane :distribute_fomo do
+    distribute_firebase(
+      app_id: "1:1004813096557:android:d712dcdfa67d5aca2fd164",
+      apk_path: "./app/build/outputs/apk/release/app-release.apk"
+    )
+  end
+
+  # 🔹 Función para actualizar versionCode en build.gradle
+  def update_version_code(file_path)
+    begin
+      build_gradle_content = File.read(file_path)
+      pattern = /versionCode\s+(\d+)/
+
+      match = build_gradle_content.match(pattern)
+      if match
+        current_version_code = match[1].to_i
+        new_version_code = current_version_code + 1
+        updated_build_gradle_content = build_gradle_content.gsub(pattern, "versionCode #{new_version_code}")
+        File.write(file_path, updated_build_gradle_content)
+        puts "Updated versionCode from #{current_version_code} to #{new_version_code}"
+      else
+        puts "⚠️ versionCode not found in build.gradle"
+      end
+    rescue StandardError => e
+      puts "❌ Error: #{e.message}"
+    end
+  end
+
+  # 🔹 Función reutilizable para Firebase Distribution
+  def distribute_firebase(params)
+    build_gradle_file_path = "./app/build.gradle"
+    update_version_code(build_gradle_file_path)
+
+    # 🛠️ Generar APK antes de distribuir
+    gradle(task: "clean assembleRelease")
+
+    commit = last_git_commit
+    changelog = commit[:message]
+
+    firebase_app_distribution(
+      app: params[:app_id],
+      testers: "jedidiazfagundez@gmail.com, juliangabo1204@gmail.com, keyerdelahozsteam@gmail.com, einerdavidfritz@gmail.com", # ✅ Usa una variable de entorno para testers
+      release_notes: changelog,
+      firebase_cli_token: "1//01AoU5onOD066CgYIARAAGAESNwF-L9IrRAXM2FXHgyEtXXwebRG-2r6h1GGNivPsvCrg4Htag0GFFlV44NRARzUPRVqSVXCREOE", # ✅ Variable de entorno para el token
+      apk_path: params[:apk_path]
+    )
+  end
+end

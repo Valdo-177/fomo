@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'com.facebook.react'
+apply plugin: 'com.google.gms.google-services'
 
 // React native vector icon
 project.ext.vectoricons = [
@@ -98,6 +99,12 @@ android {
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
+        }
+        release {
+            storeFile file(rootProject.file('android/app/release.keystore'))
+            storePassword System.getenv('MYAPP_RELEASE_STORE_PASSWORD') ?: 'fomo1234'
+            keyAlias System.getenv('MYAPP_RELEASE_KEY_ALIAS') ?: 'fomo-key'
+            keyPassword System.getenv('MYAPP_RELEASE_KEY_PASSWORD') ?: 'fomo1234'
         }
     }
     buildTypes {
