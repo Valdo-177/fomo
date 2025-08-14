@@ -21,7 +21,7 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
   'Home'
 >;
 
-const HomeScreen = ({navigation}: {navigation: HomeScreenNavigationProp}) => {
+const HomeScreen = ({}: {navigation: HomeScreenNavigationProp}) => {
   const [events, setEvents] = useState<IEvent[]>([]);
   const [eventsCopy, setEventsCopy] = useState<IEvent[]>([]);
   const [search, setSearch] = useState<string>('');

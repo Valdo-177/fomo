@@ -1,4 +1,4 @@
-import { View, Text, Image, useWindowDimensions } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
 import { IEvent } from "../types/events";
 
@@ -17,7 +17,7 @@ const CardEvent = ({ event }: Props) => {
       testID={`card-event-${event.public_id}`}
     >
       <Image
-        className="w-full h-48 object-cover"
+        className="w-full h-56 object-cover"
         source={{
           uri:
             event.photo_cover ||
@@ -28,7 +28,7 @@ const CardEvent = ({ event }: Props) => {
       />
       <View className="p-4">
         <Text
-          className="text-lg font-bold text-gray-800 mb-2"
+          className="text-xl font-bold text-gray-800 mb-2"
           testID={`card-event-title-${event.public_id}`}
           numberOfLines={2}
           ellipsizeMode="tail"
@@ -36,9 +36,17 @@ const CardEvent = ({ event }: Props) => {
           {event.title}
         </Text>
         <Text
-          numberOfLines={3}
+          numberOfLines={1}
           ellipsizeMode="tail"
           className="text-gray-600 text-sm"
+          testID={`card-event-description-${event.public_id}`}
+        >
+          {event.location}
+        </Text>
+        <Text
+          numberOfLines={3}
+          ellipsizeMode="tail"
+          className="text-gray-600 text-base"
           testID={`card-event-description-${event.public_id}`}
         >
           {event.description}
