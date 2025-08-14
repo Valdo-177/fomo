@@ -10,6 +10,8 @@ const ProfileScreen = ({ route }: { route: ProfileScreenRouteProp }) => {
     <View>
       <Text>Pantalla de Perfil</Text>
       <Text>Usuario ID: {route.params.userId}</Text>
+      <Text>Nombre: {route.params?.name}</Text>
+      <Text>como estas?</Text>
     </View>
   );
 };
