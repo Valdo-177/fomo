@@ -33,7 +33,7 @@ const HomeScreen = ({}: {navigation: HomeScreenNavigationProp}) => {
       const {
         data: {events},
       } = await axios.get<ResponseGetEvents>(
-        'https://back-dev.holafomo.com/api/events/list-public/?limit=25',
+        'https://back.holafomo.com/api/events/list-public/?limit=25',
       );
       setEvents(events);
       setEventsCopy(events);
